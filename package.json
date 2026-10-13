@@ -1,0 +1,23 @@
+{
+  "name": "dsh-lit-search-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for academic literature search, citations (GB/T 7714 / APA) and BibTeX — wraps dsh-lit-search (Crossref + OpenAlex + Semantic Scholar, no API key).",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/Flan246/dsh-lit-search-mcp.git" },
+  "keywords": ["mcp-server", "model-context-protocol", "literature", "citation", "bibtex", "crossref", "openalex", "semantic-scholar", "deepseek-harness", "dsh-plugin"],
+  "type": "module",
+  "bin": { "dsh-lit-search-mcp": "./dist/mcp.js" },
+  "mcpName": "io.github.Flan246/dsh-lit-search",
+  "files": ["dist", "server.json", "README.md"],
+  "engines": { "node": ">=20" },
+  "scripts": { "build": "tsdown", "test": "vitest run", "prepack": "tsdown" },
+  "dependencies": { "dsh-lit-search": "^0.2.2" },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.25.76",
+    "@types/node": "^24.0.0",
+    "tsdown": "^0.15.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
