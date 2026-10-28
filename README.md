@@ -1,5 +1,7 @@
 # dsh-lit-search-mcp
 
+[![M8ven Trust Score](https://m8ven.ai/badge/mcp/flan246/dsh-lit-search-mcp)](https://m8ven.ai/mcp/flan246/dsh-lit-search-mcp?s=readme)
+
 MCP server for academic literature search, citation formatting (GB/T 7714 / APA) and BibTeX generation — Crossref + OpenAlex + Semantic Scholar, merged and deduplicated, **no API key needed**.
 
 Thin MCP wrapper over [dsh-lit-search](https://www.npmjs.com/package/dsh-lit-search) (also available as a DeepSeek Harness plugin, a CLI, and a SKILL.md).

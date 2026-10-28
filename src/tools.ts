@@ -15,6 +15,12 @@ export interface LitCore {
 
 const SEARCH_SORTS = ['citations', 'date', 'relevance'] as const
 const CITE_STYLES = ['gbt7714', 'gbt7714-numeric', 'apa', 'bibtex'] as const
+const LIT_TOOL_ANNOTATIONS = {
+  readOnlyHint: true,
+  destructiveHint: false,
+  idempotentHint: true,
+  openWorldHint: true,
+} as const
 
 type ToolResult = { isError?: true; content: { type: 'text'; text: string }[] }
 
@@ -35,6 +41,7 @@ export function registerLitTools(server: McpServer, core: LitCore): void {
     'lit_search',
     {
       description: 'Search academic papers on Crossref, OpenAlex and Semantic Scholar by keyword. Returns merged, deduplicated results with DOI and citation counts.',
+      annotations: LIT_TOOL_ANNOTATIONS,
       inputSchema: {
         query: z.string().describe('Search keywords'),
         limit: z.number().optional().describe('Max results (default 10)'),
@@ -63,6 +70,7 @@ export function registerLitTools(server: McpServer, core: LitCore): void {
     'lit_cite',
     {
       description: 'Format a citation for a DOI. Styles: gbt7714 (Chinese standard), gbt7714-numeric (numbered), apa, bibtex.',
+      annotations: LIT_TOOL_ANNOTATIONS,
       inputSchema: {
         doi: z.string().describe('Paper DOI'),
         style: z.enum(CITE_STYLES).optional().describe('gbt7714 | gbt7714-numeric | apa | bibtex (default gbt7714)'),
@@ -80,6 +88,7 @@ export function registerLitTools(server: McpServer, core: LitCore): void {
     'lit_bib',
     {
       description: 'Generate BibTeX entries for a list of DOIs. Returns combined .bib content and the list of DOIs that failed.',
+      annotations: LIT_TOOL_ANNOTATIONS,
       inputSchema: {
         dois: z.array(z.string()).describe('Array of DOI strings'),
       },
@@ -93,6 +102,7 @@ export function registerLitTools(server: McpServer, core: LitCore): void {
     'lit_related',
     {
       description: 'Find related papers for a DOI via OpenAlex related_works.',
+      annotations: LIT_TOOL_ANNOTATIONS,
       inputSchema: {
         doi: z.string().describe('Paper DOI'),
         limit: z.number().optional().describe('Max results (default 10)'),

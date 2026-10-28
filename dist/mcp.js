@@ -18986,6 +18986,12 @@ const CITE_STYLES = [
 	"apa",
 	"bibtex"
 ];
+const LIT_TOOL_ANNOTATIONS = {
+	readOnlyHint: true,
+	destructiveHint: false,
+	idempotentHint: true,
+	openWorldHint: true
+};
 function okText(text) {
 	return { content: [{
 		type: "text",
@@ -19007,6 +19013,7 @@ function asContent(r, render) {
 function registerLitTools(server$1, core$1) {
 	server$1.registerTool("lit_search", {
 		description: "Search academic papers on Crossref, OpenAlex and Semantic Scholar by keyword. Returns merged, deduplicated results with DOI and citation counts.",
+		annotations: LIT_TOOL_ANNOTATIONS,
 		inputSchema: {
 			query: stringType().describe("Search keywords"),
 			limit: numberType().optional().describe("Max results (default 10)"),
@@ -19025,6 +19032,7 @@ function registerLitTools(server$1, core$1) {
 	});
 	server$1.registerTool("lit_cite", {
 		description: "Format a citation for a DOI. Styles: gbt7714 (Chinese standard), gbt7714-numeric (numbered), apa, bibtex.",
+		annotations: LIT_TOOL_ANNOTATIONS,
 		inputSchema: {
 			doi: stringType().describe("Paper DOI"),
 			style: enumType(CITE_STYLES).optional().describe("gbt7714 | gbt7714-numeric | apa | bibtex (default gbt7714)")
@@ -19035,10 +19043,12 @@ function registerLitTools(server$1, core$1) {
 	});
 	server$1.registerTool("lit_bib", {
 		description: "Generate BibTeX entries for a list of DOIs. Returns combined .bib content and the list of DOIs that failed.",
+		annotations: LIT_TOOL_ANNOTATIONS,
 		inputSchema: { dois: arrayType(stringType()).describe("Array of DOI strings") }
 	}, async (args) => asContent(await core$1.bibEntries(args.dois), (d) => d.entries + (d.missing.length ? `\n-- missing: ${d.missing.join(", ")}` : "")));
 	server$1.registerTool("lit_related", {
 		description: "Find related papers for a DOI via OpenAlex related_works.",
+		annotations: LIT_TOOL_ANNOTATIONS,
 		inputSchema: {
 			doi: stringType().describe("Paper DOI"),
 			limit: numberType().optional().describe("Max results (default 10)")

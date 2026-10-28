@@ -37,6 +37,19 @@ describe('registerLitTools', () => {
     expect([...s.tools.keys()].sort()).toEqual(['lit_bib', 'lit_cite', 'lit_related', 'lit_search'])
   })
 
+  it('declares read-only, non-destructive, idempotent, open-world behavior for every tool', () => {
+    const s = fakeServer()
+    registerLitTools(s, stubCore())
+    for (const { meta } of s.tools.values()) {
+      expect(meta.annotations).toEqual({
+        readOnlyHint: true,
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: true,
+      })
+    }
+  })
+
   it('lit_search maps snake_case args to core opts and renders papers', async () => {
     const s = fakeServer()
     let seen: any
