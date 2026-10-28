@@ -1,6 +1,6 @@
 # dsh-lit-search-mcp
 
-[![M8ven Score](https://m8ven.ai/badge/mcp/flan246-dsh-lit-search-mcp-wqqo48?v=dd5f6dae6851aff6869899d2ed311e73&variant=verified)](https://m8ven.ai/mcp/flan246-dsh-lit-search-mcp-wqqo48?s=readme)
+[![M8ven Score](https://m8ven.ai/badge/mcp/flan246-dsh-lit-search-mcp-wqqo48?variant=verified)](https://m8ven.ai/mcp/flan246-dsh-lit-search-mcp-wqqo48?s=readme)
 
 MCP server for academic literature search, citation formatting (GB/T 7714 / APA) and BibTeX generation — Crossref + OpenAlex + Semantic Scholar, merged and deduplicated, **no API key needed**.
 
