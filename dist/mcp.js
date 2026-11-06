@@ -19060,7 +19060,7 @@ function registerLitTools(server$1, core$1) {
 //#region src/server.ts
 const server = new McpServer({
 	name: "dsh-lit-search-mcp",
-	version: "0.1.0"
+	version: "0.1.1"
 });
 registerLitTools(server, {
 	searchPapers,
